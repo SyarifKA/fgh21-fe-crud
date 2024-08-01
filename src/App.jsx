@@ -1,6 +1,7 @@
 import InputData from "./pages/Input"
 import DataUser from "./pages/DataUser"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import EditUser from "./pages/EditUser"
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path: "/data",
     element: <DataUser />
+  },
+  {
+    path: "/edit/:id",
+    element: <EditUser />
   },
 ])
 

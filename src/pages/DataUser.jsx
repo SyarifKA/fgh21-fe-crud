@@ -1,20 +1,24 @@
 import React from "react";
 import { IoTrashSharp } from "react-icons/io5";
 import { TiEdit } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useEffect, useState} from 'react'
 
 
 function TableData() {
     const [dataUser, setDataUser] = useState([])
 
+    const nav = useNavigate()
     async function deleteItem(id) {
         await fetch(`http://localhost:8888/users/${id}`, {
           method: 'DELETE',
         });
         getData();
       }
-      
+    
+    function editData(id) {
+        nav("/edit/"+id)
+    }
     async function getData() {
         const endPoint = 'http://localhost:8888/users'
         const response = await fetch(endPoint);
@@ -58,7 +62,7 @@ function TableData() {
                             <td className="border border-black">{item.name}</td>
                             <td className="border border-black">{item.email}</td>
                             <td className="border border-black">
-                                <button className="p-2"><TiEdit /></button>
+                                <button onClick={() => editData(item.id)} className="p-2"><TiEdit /></button>
                                 <button onClick={() => deleteItem(item.id)} className="p-2"><IoTrashSharp /></button>
                             </td>
                         </tr>
