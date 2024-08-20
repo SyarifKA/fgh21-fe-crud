@@ -20,7 +20,7 @@ function TableData() {
         nav("/edit/"+id)
     }
     async function getData() {
-        const endPoint = 'http://localhost:8888/users'
+        const endPoint = 'http://localhost:8888/users/'
         const response = await fetch(endPoint);
         const data = await response.json()
         const listData = data.results
@@ -59,7 +59,7 @@ function TableData() {
                         return (
                         <tr key={item.id} className="text-center">
                             <td className="border border-black">{item.id}</td>
-                            <td className="border border-black">{item.name}</td>
+                            <td className="border border-black">{item.username}</td>
                             <td className="border border-black">{item.email}</td>
                             <td className="border border-black">
                                 <button onClick={() => editData(item.id)} className="p-2"><TiEdit /></button>
